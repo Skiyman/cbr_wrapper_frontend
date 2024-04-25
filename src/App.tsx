@@ -9,13 +9,15 @@ import { useMemo, useState } from "react";
 import { ColorModeContext } from "./theme/ColorModeContext";
 import { createTheme } from "@mui/material/styles";
 import getDesignTokens from "./theme/lightTheme";
+import { Provider } from "react-redux";
+import { store } from "./api/store";
 
 function App() {
-  const [mode, setMode] = useState<PaletteMode>("light");
+  const [mode, setMode] = useState<PaletteMode>("dark");
   const toggleColorMode = () => {
     const theme = mode === "light" ? "dark" : "light";
     localStorage.setItem("theme", theme);
-    setMode((prevMode) => (theme));
+    setMode((prevMode) => theme);
   };
   const appTheme = useMemo(() => createTheme(getDesignTokens(mode)), [mode]);
 
@@ -25,16 +27,18 @@ function App() {
         <Button label="TestButton"></Button>
       </div> */}
       <ColorModeContext.Provider value={{ toggleColorMode, mode }}>
-        <ThemeProvider theme={appTheme}>
-          <CssBaseline />
-          <header>
-            <Header />
-          </header>
-          <Routes>
-            <Route path="/" element={<CurrenciesTable />} />
-            <Route path="/charts" element={<ChartsPage />} />
-          </Routes>
-        </ThemeProvider>
+        <Provider store={store}>
+          <ThemeProvider theme={appTheme}>
+            <CssBaseline />
+            <header>
+              <Header />
+            </header>
+            <Routes>
+              <Route path="/" element={<CurrenciesTable />} />
+              <Route path="/charts" element={<ChartsPage />} />
+            </Routes>
+          </ThemeProvider>
+        </Provider>
       </ColorModeContext.Provider>
     </>
   );

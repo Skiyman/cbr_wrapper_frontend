@@ -1,7 +1,5 @@
-import axios from "axios";
-import { apiUrl } from "../../components/consts";
 import * as React from "react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { ICurrencyData } from "../../interfaces/ICurrenciesData";
 import {
   createColumnHelper,
@@ -12,19 +10,19 @@ import {
 import "./CurrenciesTable.scss";
 import { CircularProgress } from "@mui/material";
 import Typography from "@mui/material/Typography";
+import { useGetCurrenciesTodayQuery } from "../../api/currenciesApi";
+import { red } from "@mui/material/colors";
 
 const CurrenciesTable = () => {
   const [appState, setAppState] = useState();
-  const [responseData, setResponseData] = useState<ICurrencyData[] | null>(
-    null,
-  );
+  const { data, isLoading, isError, isFetching } = useGetCurrenciesTodayQuery();
 
-  useEffect(() => {
-    if (responseData != null) return;
-    axios.get(apiUrl + "currencies").then((resp) => {
-      setResponseData(resp.data);
-    });
-  }, [responseData]);
+  // useEffect(() => {
+  //   if (responseData != null) return;
+  //   axios.get(apiUrl + "currencies").then((resp) => {
+  //     setResponseData(resp.data);
+  //   });
+  // }, [responseData]);
 
   // useEffect(() => {}, [setAppState])
 
@@ -63,11 +61,11 @@ const CurrenciesTable = () => {
 
   const table = useReactTable<ICurrencyData>({
     columns,
-    data: responseData ?? [],
+    data: data ?? [],
     getCoreRowModel: getCoreRowModel(),
   });
 
-  if (responseData === null) {
+  if (isLoading) {
     return (
       <>
         <div
@@ -78,6 +76,32 @@ const CurrenciesTable = () => {
           }}
         >
           <CircularProgress size={100} color="secondary" thickness={5} />
+        </div>
+      </>
+    );
+  } else if (isError) {
+    return (
+      <>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            marginTop: "250px",
+          }}
+        >
+          <Typography
+            variant="h3"
+            noWrap
+            component="h3"
+            color="#fff"
+            gutterBottom
+            sx={{
+              fontSize: { xs: "16px", md: "28px" },
+            }}
+            bgcolor={red}
+          >
+            Ошибка сервера 500
+          </Typography>
         </div>
       </>
     );

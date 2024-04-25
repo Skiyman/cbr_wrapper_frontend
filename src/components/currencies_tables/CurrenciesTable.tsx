@@ -1,31 +1,23 @@
-import axios from "axios";
-import { apiUrl } from "../consts";
-import { useEffect, useState } from "react";
-import { ICurrencyData } from "../../interfaces/ICurrenciesData";
 import * as React from "react";
+import { ICurrencyData } from "../../interfaces/ICurrenciesData";
 import {
   createColumnHelper,
   flexRender,
   getCoreRowModel,
   useReactTable,
 } from "@tanstack/react-table";
+import { useGetCurrenciesTodayQuery } from "../../api/currenciesApi";
 
 const CurrenciesTable = () => {
-  const [appState, setAppState] = useState();
-  const [responseData, setResponseData] = useState<ICurrencyData[] | null>(
-    null
-  );
+  const { data, isLoading, isError, isFetching } = useGetCurrenciesTodayQuery();
+
   // TODO: RTK query
-  useEffect(() => {
-    if (responseData != null) return;
-    axios.get(apiUrl + "currencies").then((resp) => {
-      setResponseData(resp.data);
-    });
-  }, [responseData]);
-
-  // useEffect(() => {}, [setAppState])
-
-  const [search, setSearch] = useState("");
+  // useEffect(() => {
+  //   if (responseData != null) return;
+  //   axios.get(apiUrl + "currencies").then((resp) => {
+  //     setResponseData(resp.data);
+  //   });
+  // }, [responseData]);
 
   const columnHelper = createColumnHelper<ICurrencyData>();
 
@@ -62,16 +54,19 @@ const CurrenciesTable = () => {
 
   const table = useReactTable<ICurrencyData>({
     columns,
-    data: responseData ?? [],
+    data: data ?? [],
     getCoreRowModel: getCoreRowModel(),
   });
 
-  if (responseData === null) {
+  if (isLoading) {
     return (
       <>
-        <div>IDI NAHUI</div>
+        <div>Loading</div>
       </>
     );
+  }
+
+  if (isError) {
   }
 
   return (
@@ -87,7 +82,7 @@ const CurrenciesTable = () => {
                       ? null
                       : flexRender(
                           header.column.columnDef.header,
-                          header.getContext()
+                          header.getContext(),
                         )}
                   </th>
                 ))}

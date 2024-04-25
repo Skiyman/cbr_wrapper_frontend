@@ -49,25 +49,24 @@ const Header = () => {
             <AccountBalanceIcon
               sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}
             />
-              <Link to="/">
-            <Typography
-              variant="h6"
-              noWrap
-              component="a"
-              textAlign="center"
-              sx={{
-                mr: 10,
-                display: { xs: "none", md: "flex" },
-                fontFamily: "sans-serif",
-                fontWeight: 800,
-                letterSpacing: ".3rem",
-                color: "inherit",
-                textDecoration: "none",
-              }}
-            >
-              CBR Wrapper
-            </Typography>
-              </Link>
+            <Link to="/">
+              <Typography
+                variant="h6"
+                noWrap
+                component="a"
+                textAlign="center"
+                sx={{
+                  mr: 10,
+                  display: { xs: "none", md: "flex" },
+                  fontFamily: "sans-serif",
+                  fontWeight: 800,
+                  letterSpacing: ".3rem",
+                  color: "inherit",
+                }}
+              >
+                CBR Wrapper
+              </Typography>
+            </Link>
             <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
               <IconButton
                 size="large"
@@ -98,12 +97,10 @@ const Header = () => {
                 }}
               >
                 {pages.map((page) => (
-                  <MenuItem
-                    key={page.name}
-                    href={page.href}
-                    onClick={handleCloseNavMenu}
-                  >
-                    <Typography textAlign="center">{page.name}</Typography>
+                  <MenuItem key={page.name} onClick={handleCloseNavMenu}>
+                    <Link key={page.name} to={page.href}>
+                      <Typography textAlign="center">{page.name}</Typography>
+                    </Link>
                   </MenuItem>
                 ))}
               </Menu>
@@ -131,14 +128,16 @@ const Header = () => {
             </Typography>
             <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
               {pages.map((page) => (
-                <Button
-                  key={page.name}
-                  href={page.href}
-                  onClick={handleCloseNavMenu}
-                  sx={{ my: 2, color: "white", display: "block" }}
-                >
-                  {page.name}
-                </Button>
+                <Link key={page.name} to={page.href}>
+                  <Button
+                    key={page.name}
+                    href={page.href}
+                    onClick={handleCloseNavMenu}
+                    sx={{ my: 2, color: "white", display: "block" }}
+                  >
+                    {page.name}
+                  </Button>
+                </Link>
               ))}
             </Box>
             <ThemeSwitcher />
