@@ -13,7 +13,9 @@ import getDesignTokens from "./theme/lightTheme";
 function App() {
   const [mode, setMode] = useState<PaletteMode>("light");
   const toggleColorMode = () => {
-    setMode((prevMode) => (prevMode === "light" ? "dark" : "light"));
+    const theme = mode === "light" ? "dark" : "light";
+    localStorage.setItem("theme", theme);
+    setMode((prevMode) => (theme));
   };
   const appTheme = useMemo(() => createTheme(getDesignTokens(mode)), [mode]);
 

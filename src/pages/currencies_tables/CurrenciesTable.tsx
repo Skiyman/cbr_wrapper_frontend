@@ -92,6 +92,9 @@ const CurrenciesTable = () => {
           component="h3"
           color="#fff"
           gutterBottom
+          sx={{
+            fontSize: { xs: "16px", md: "28px" },
+          }}
         >
           Курс валют на сегодня
         </Typography>

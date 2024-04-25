@@ -12,6 +12,7 @@ import MenuItem from "@mui/material/MenuItem";
 import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
 import { IMenuItem } from "../../interfaces/IMenuItem";
 import ThemeSwitcher from "../ThemeSwitcher/ThemeSwitcher";
+import { Link } from "react-router-dom";
 
 const pages: IMenuItem[] = [
   {
@@ -48,11 +49,11 @@ const Header = () => {
             <AccountBalanceIcon
               sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}
             />
+              <Link to="/">
             <Typography
               variant="h6"
               noWrap
               component="a"
-              href="/"
               textAlign="center"
               sx={{
                 mr: 10,
@@ -66,7 +67,7 @@ const Header = () => {
             >
               CBR Wrapper
             </Typography>
-
+              </Link>
             <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
               <IconButton
                 size="large"
