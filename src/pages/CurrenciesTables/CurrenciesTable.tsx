@@ -25,7 +25,7 @@ const CurrenciesTable = () => {
             marginTop: "250px",
           }}
         >
-          <CircularProgress size={100} color="secondary" thickness={5} />
+          <CircularProgress size={100} color="primary" thickness={5} />
         </div>
       </>
     );
@@ -60,27 +60,45 @@ const CurrenciesTable = () => {
     <TableContainer
       className={"table__container"}
       component={Paper}
-      sx={{ maxHeight: 440, maxWidth: "75%", margin: "0px auto" }}
+      sx={{ maxHeight: 600, maxWidth: "75%", margin: "0px auto" }}
     >
       <Table sx={{ minWidth: 650 }} stickyHeader>
-        <TableHead>
+        <TableHead sx={{}}>
           <TableRow>
-            <TableCell sx={{ backgroundColor: "secondary.main" }} align="right">
+            <TableCell
+              sx={{ backgroundColor: "secondary.main", fontSize: 24 }}
+              align="right"
+            >
               Code
             </TableCell>
-            <TableCell sx={{ backgroundColor: "secondary.main" }} align="right">
+            <TableCell
+              sx={{ backgroundColor: "secondary.main", fontSize: 24 }}
+              align="right"
+            >
               Name
             </TableCell>
-            <TableCell sx={{ backgroundColor: "secondary.main" }} align="right">
+            <TableCell
+              sx={{ backgroundColor: "secondary.main", fontSize: 24 }}
+              align="right"
+            >
               Denomination
             </TableCell>
-            <TableCell sx={{ backgroundColor: "secondary.main" }} align="right">
+            <TableCell
+              sx={{ backgroundColor: "secondary.main", fontSize: 24 }}
+              align="right"
+            >
               Rate
             </TableCell>
-            <TableCell sx={{ backgroundColor: "secondary.main" }} align="right">
+            <TableCell
+              sx={{ backgroundColor: "secondary.main", fontSize: 24 }}
+              align="right"
+            >
               ISO Code
             </TableCell>
-            <TableCell sx={{ backgroundColor: "secondary.main" }} align="right">
+            <TableCell
+              sx={{ backgroundColor: "secondary.main", fontSize: 24 }}
+              align="right"
+            >
               Unit Rate
             </TableCell>
           </TableRow>
@@ -88,12 +106,25 @@ const CurrenciesTable = () => {
         <TableBody sx={{ backgroundColor: "secondary.main" }}>
           {data.map((row) => (
             <TableRow key={row.currency_iso_code}>
-              <TableCell> {row.currency_str_code}</TableCell>
-              <TableCell align="right">{row.currency_name}</TableCell>
-              <TableCell align="right">{row.currency_denomination}</TableCell>
-              <TableCell align="right">{row.currency_rate}</TableCell>
-              <TableCell align="right">{row.currency_iso_code}</TableCell>
-              <TableCell align="right">{row.currency_unit_rate}</TableCell>
+              <TableCell sx={{ fontSize: 24 }}>
+                {" "}
+                {row.currency_str_code}
+              </TableCell>
+              <TableCell sx={{ fontSize: 24 }} align="right">
+                {row.currency_name}
+              </TableCell>
+              <TableCell sx={{ fontSize: 24 }} align="right">
+                {row.currency_denomination}
+              </TableCell>
+              <TableCell sx={{ fontSize: 24 }} align="right">
+                {row.currency_rate}
+              </TableCell>
+              <TableCell sx={{ fontSize: 24 }} align="right">
+                {row.currency_iso_code}
+              </TableCell>
+              <TableCell sx={{ fontSize: 24 }} align="right">
+                {row.currency_unit_rate}
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>
