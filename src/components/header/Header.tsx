@@ -49,30 +49,32 @@ const Header = () => {
             <AccountBalanceIcon
               sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}
             />
-            <Link to="/">
-              <Typography
-                variant="h6"
-                noWrap
-                component="a"
-                textAlign="center"
-                sx={{
-                  mr: 10,
-                  display: { xs: "none", md: "flex" },
-                  fontFamily: "sans-serif",
-                  fontWeight: 800,
-                  letterSpacing: ".3rem",
-                  color: "inherit",
-                }}
-              >
-                CBR Wrapper
-              </Typography>
-            </Link>
-            <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+            <Typography
+              variant="h6"
+              noWrap
+              component={Link}
+              to="/"
+              textAlign="center"
+              sx={{
+                mr: 10,
+                display: { xs: "none", md: "flex" },
+                fontFamily: "sans-serif",
+                fontWeight: 800,
+                letterSpacing: ".3rem",
+                color: "inherit",
+                textDecoration: "none",
+              }}
+            >
+              CBR Wrapper
+            </Typography>
+            <Box
+              sx={{
+                flexGrow: 1,
+                display: { xs: "flex", md: "none" },
+              }}
+            >
               <IconButton
                 size="large"
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
                 onClick={handleOpenNavMenu}
                 color="inherit"
               >
@@ -99,7 +101,12 @@ const Header = () => {
                 {pages.map((page) => (
                   <MenuItem key={page.name} onClick={handleCloseNavMenu}>
                     <Link key={page.name} to={page.href}>
-                      <Typography textAlign="center">{page.name}</Typography>
+                      <Typography
+                        textAlign="center"
+                        sx={{ color: "text.primary" }}
+                      >
+                        {page.name}
+                      </Typography>
                     </Link>
                   </MenuItem>
                 ))}
@@ -111,8 +118,8 @@ const Header = () => {
             <Typography
               variant="h5"
               noWrap
-              component="a"
-              href="/"
+              component={Link}
+              to="/"
               sx={{
                 mr: 2,
                 display: { xs: "flex", md: "none" },
@@ -121,7 +128,6 @@ const Header = () => {
                 fontWeight: 700,
                 letterSpacing: ".3rem",
                 color: "inherit",
-                textDecoration: "none",
               }}
             >
               CBR Wrapper
@@ -131,9 +137,7 @@ const Header = () => {
                 <Link key={page.name} to={page.href}>
                   <Button
                     key={page.name}
-                    href={page.href}
-                    onClick={handleCloseNavMenu}
-                    sx={{ my: 2, color: "white", display: "block" }}
+                    sx={{ my: 2, color: "text.primary", display: "block" }}
                   >
                     {page.name}
                   </Button>
