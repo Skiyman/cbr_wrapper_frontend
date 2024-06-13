@@ -1,0 +1,11 @@
+.card {
+  margin-bottom: 10px;
+
+  &__container {
+    max-width: 1200px;
+    margin: 20px auto;
+
+    justify-content: space-between;
+    align-items: center;
+  }
+}

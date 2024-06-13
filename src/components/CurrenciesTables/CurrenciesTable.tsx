@@ -60,7 +60,7 @@ const CurrenciesTable = () => {
     <TableContainer
       className={"table__container"}
       component={Paper}
-      sx={{ maxHeight: 600, maxWidth: "75%", margin: "0px auto" }}
+      sx={{ maxHeight: 600, maxWidth: "1200px", margin: "0px auto" }}
     >
       <Table sx={{ minWidth: 650 }} stickyHeader>
         <TableHead sx={{}}>

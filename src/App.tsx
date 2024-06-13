@@ -1,7 +1,7 @@
 import "./reset-styles.css";
 import "./App.scss";
-import Header from "./components/header/Header";
-import CurrenciesTable from "./pages/CurrenciesTables/CurrenciesTable";
+import Header from "./components/Header/Header";
+import CurrenciesTable from "./pages/CurrenciesTables/CurrenciesTablePage";
 import { Route, Routes } from "react-router-dom";
 import ChartsPage from "./pages/ChartsPage/ChartsPage";
 import { CssBaseline, PaletteMode, ThemeProvider } from "@mui/material";
