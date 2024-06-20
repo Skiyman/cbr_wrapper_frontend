@@ -17,26 +17,29 @@ const CurrencyChart = (props: chartProps) => {
   const rateValues = props.currencyDynamicData.map(
     (item) => item.currency_rate,
   );
-  return (
-    <>
-      <LineChart
-        xAxis={[
-          {
-            data: datesValues,
-            scaleType: "point",
-          },
-        ]}
-        series={[
-          {
-            data: rateValues,
-          },
-        ]}
-        width={1000}
-        height={400}
-        grid={{ vertical: true, horizontal: true }}
-      />
-    </>
-  );
+  console.log(props.currencyDynamicData);
+  if (props.currencyDynamicData) {
+    return (
+      <>
+        <LineChart
+          xAxis={[
+            {
+              data: datesValues,
+              scaleType: "point",
+            },
+          ]}
+          series={[
+            {
+              data: rateValues,
+            },
+          ]}
+          height={300}
+          margin={{ top: 40, bottom: 20 }}
+          grid={{ vertical: true, horizontal: true }}
+        />
+      </>
+    );
+  }
 };
 
 export default CurrencyChart;
