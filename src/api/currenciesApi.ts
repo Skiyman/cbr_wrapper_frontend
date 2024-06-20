@@ -13,10 +13,10 @@ export const currenciesApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: apiUrl }),
   endpoints: (builder) => ({
     getCurrenciesToday: builder.query<ICurrencyData[], void>({
-      query: () => `currencies/`,
+      query: () => `currencies`,
     }),
     getCurrenciesCodes: builder.query<ICurrencyCode[], void>({
-      query: () => "enum_currencies/",
+      query: () => "enum_currencies",
     }),
     getMajorCurrencies: builder.query<IMajorCurrency, string>({
       query: (strCode: string) => `currencies/major/${strCode}`,
